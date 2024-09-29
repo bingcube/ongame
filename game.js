@@ -1,7 +1,7 @@
 const config = {
     type: Phaser.AUTO,
-    width: window.innerWidth, // Chiều rộng bằng chiều rộng cửa sổ
-    height: window.innerHeight, // Chiều cao bằng chiều cao cửa sổ
+    width: window.innerWidth,
+    height: window.innerHeight,
     physics: {
         default: 'arcade',
         arcade: {
@@ -19,18 +19,18 @@ const config = {
 const game = new Phaser.Game(config);
 
 window.addEventListener('resize', () => {
-    game.scale.resize(window.innerWidth, window.innerHeight); // Cập nhật kích thước khi thay đổi kích thước cửa sổ
+    game.scale.resize(window.innerWidth, window.innerHeight);
 });
 
 let player;
 
 function preload() {
-    this.load.image('player', 'url_to_player_asset');
-    this.load.image('bullet', 'url_to_bullet_asset');
+    this.load.image('player', 'https://raw.githubusercontent.com/bingcube/source/refs/heads/main/US_Thompson.png'); // Asset súng
+    this.load.image('bullet', 'url_to_bullet_asset'); // Cập nhật link đạn ở đây
 }
 
 function create() {
-    player = this.physics.add.sprite(config.width / 2, config.height / 2, 'player');
+    player = this.physics.add.sprite(config.width / 2, config.height / 2, 'player').setOrigin(0.5, 0.5);
     this.input.on('pointerdown', shootBullet, this);
 }
 
