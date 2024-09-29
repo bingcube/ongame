@@ -27,13 +27,13 @@ let isDragging = false;
 let cursors;
 
 function preload() {
-    this.load.image('player', 'https://raw.githubusercontent.com/bingcube/source/refs/heads/main/US_Thompson.png'); // Asset súng
-    this.load.image('bullet', 'https://raw.githubusercontent.com/bingcube/source/refs/heads/main/bullet.png'); // Asset viên đạn
+    this.load.image('player', 'https://raw.githubusercontent.com/bingcube/source/refs/heads/main/US_Thompson.png'); 
+    this.load.image('bullet', 'https://raw.githubusercontent.com/bingcube/source/refs/heads/main/bullet.png'); 
 }
 
 function create() {
     player = this.physics.add.sprite(config.width / 2, config.height / 2, 'player').setOrigin(0.5, 0.5);
-    this.input.on('pointerdown', shootBullet, this); // Bắn đạn khi nhấp chuột
+    this.input.on('pointerdown', shootBullet, this); 
     this.input.on('pointermove', (pointer) => {
         if (isDragging) {
             player.x = pointer.x;
@@ -43,12 +43,12 @@ function create() {
     this.input.on('pointerdown', () => { isDragging = true; });
     this.input.on('pointerup', () => { isDragging = false; });
 
-    cursors = this.input.keyboard.createCursorKeys(); // Tạo đối tượng phím
+    cursors = this.input.keyboard.createCursorKeys(); 
 }
 
 function update() {
-    // Di chuyển bằng phím
-    const speed = 2; // Tốc độ di chuyển
+
+    const speed = 2; 
     if (cursors.up.isDown) {
         player.y -= speed;
     }
