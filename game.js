@@ -26,7 +26,7 @@ let player;
 
 function preload() {
     this.load.image('player', 'https://raw.githubusercontent.com/bingcube/source/refs/heads/main/US_Thompson.png'); // Asset súng
-    this.load.image('bullet', 'url_to_bullet_asset'); // Cập nhật link đạn ở đây
+    this.load.image('bullet', 'https://raw.githubusercontent.com/bingcube/source/refs/heads/main/bullet.png'); // Asset viên đạn
 }
 
 function create() {
@@ -39,6 +39,6 @@ function update() {
 }
 
 function shootBullet(pointer) {
-    const bullet = this.physics.add.sprite(player.x, player.y, 'bullet');
+    const bullet = this.physics.add.sprite(player.x, player.y, 'bullet').setScale(0.2); // Điều chỉnh kích thước viên đạn
     this.physics.moveTo(bullet, pointer.x, pointer.y, 600);
 }
