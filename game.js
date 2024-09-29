@@ -53,17 +53,6 @@ function update() {
         player.y -= speed;
     }
     if (cursors.down.isDown) {
-        player.y += speed;
-    }
-    if (cursors.left.isDown) {
-        player.x -= speed;
-    }
-    if (cursors.right.isDown) {
-        player.x += speed;
-    }
-}
-
-function shootBullet(pointer) {
-    const bullet = this.physics.add.sprite(player.x, player.y, 'bullet').setScale(0.2);
+       07);
     this.physics.moveTo(bullet, pointer.x, pointer.y, 600);
 }
