@@ -1,7 +1,7 @@
 const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: window.innerWidth, // Chiều rộng bằng chiều rộng cửa sổ
+    height: window.innerHeight, // Chiều cao bằng chiều cao cửa sổ
     physics: {
         default: 'arcade',
         arcade: {
@@ -17,6 +17,11 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+window.addEventListener('resize', () => {
+    game.scale.resize(window.innerWidth, window.innerHeight); // Cập nhật kích thước khi thay đổi kích thước cửa sổ
+});
+
 let player;
 
 function preload() {
@@ -25,7 +30,7 @@ function preload() {
 }
 
 function create() {
-    player = this.physics.add.sprite(400, 300, 'player');
+    player = this.physics.add.sprite(config.width / 2, config.height / 2, 'player');
     this.input.on('pointerdown', shootBullet, this);
 }
 
