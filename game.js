@@ -24,7 +24,7 @@ window.addEventListener('resize', () => {
 
 let player;
 let isDragging = false;
-let cursors; // Đối tượng để theo dõi phím
+let cursors;
 
 function preload() {
     this.load.image('player', 'https://raw.githubusercontent.com/bingcube/source/refs/heads/main/US_Thompson.png'); // Asset súng
@@ -32,9 +32,14 @@ function preload() {
 }
 
 function create() {
-    this.add.rectangle(config.width / 2, config.height / 2, 50, 50, 0xff0000); // Hình vuông kiểm tra
-
     player = this.physics.add.sprite(config.width / 2, config.height / 2, 'player').setOrigin(0.5, 0.5);
+    this.input.on('pointerdown', shootBullet, this); // Bắn đạn khi nhấp chuột
+    this.input.on('pointermove', (pointer) => {
+        if (isDragging) {
+            player.x = pointer.x;
+            player.y = pointer.y;
+        }
+    });
     this.input.on('pointerdown', () => { isDragging = true; });
     this.input.on('pointerup', () => { isDragging = false; });
 
@@ -42,13 +47,8 @@ function create() {
 }
 
 function update() {
-    if (isDragging) {
-        player.x = this.input.x;
-        player.y = this.input.y;
-    }
-    
     // Di chuyển bằng phím
-    const speed = 5; // Tốc độ di chuyển
+    const speed = 2; // Tốc độ di chuyển
     if (cursors.up.isDown) {
         player.y -= speed;
     }
@@ -64,6 +64,6 @@ function update() {
 }
 
 function shootBullet(pointer) {
-    const bullet = this.physics.add.sprite(player.x, player.y, 'bullet').setScale(0.07);
+    const bullet = this.physics.add.sprite(player.x, player.y, 'bullet').setScale(0.2);
     this.physics.moveTo(bullet, pointer.x, pointer.y, 600);
 }
