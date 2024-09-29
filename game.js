@@ -24,6 +24,7 @@ window.addEventListener('resize', () => {
 
 let player;
 let isDragging = false;
+let cursors; // Đối tượng để theo dõi phím
 
 function preload() {
     this.load.image('player', 'https://raw.githubusercontent.com/bingcube/source/refs/heads/main/US_Thompson.png'); // Asset súng
@@ -31,9 +32,13 @@ function preload() {
 }
 
 function create() {
+    this.add.rectangle(config.width / 2, config.height / 2, 50, 50, 0xff0000); // Hình vuông kiểm tra
+
     player = this.physics.add.sprite(config.width / 2, config.height / 2, 'player').setOrigin(0.5, 0.5);
     this.input.on('pointerdown', () => { isDragging = true; });
     this.input.on('pointerup', () => { isDragging = false; });
+
+    cursors = this.input.keyboard.createCursorKeys(); // Tạo đối tượng phím
 }
 
 function update() {
@@ -44,16 +49,16 @@ function update() {
     
     // Di chuyển bằng phím
     const speed = 5; // Tốc độ di chuyển
-    if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.UP)) {
+    if (cursors.up.isDown) {
         player.y -= speed;
     }
-    if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.DOWN)) {
+    if (cursors.down.isDown) {
         player.y += speed;
     }
-    if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.LEFT)) {
+    if (cursors.left.isDown) {
         player.x -= speed;
     }
-    if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.RIGHT)) {
+    if (cursors.right.isDown) {
         player.x += speed;
     }
 }
