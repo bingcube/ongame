@@ -39,6 +39,6 @@ function update() {
 }
 
 function shootBullet(pointer) {
-    const bullet = this.physics.add.sprite(player.x, player.y, 'bullet').setScale(0.2); // Điều chỉnh kích thước viên đạn
+    const bullet = this.physics.add.sprite(player.x, player.y, 'bullet').setScale(0.07); // Điều chỉnh kích thước viên đạn
     this.physics.moveTo(bullet, pointer.x, pointer.y, 600);
 }
